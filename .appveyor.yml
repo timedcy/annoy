@@ -15,8 +15,8 @@ install:
  
 build_script:
 - cmd: |
-  pip install numpy h5py wheel --quiet
-  python -W ignore setup.py bdist_wheel
+    pip install numpy h5py wheel --quiet
+    python -W ignore setup.py bdist_wheel
 skip_tags: true
 artifacts:
 - path: dist\*
