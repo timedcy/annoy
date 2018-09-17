@@ -14,9 +14,9 @@ install:
 - ps: $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
  
 build_script:
-  - cmd: |
-    pip install numpy h5py wheel --quiet
-    python -W ignore setup.py bdist_wheel
+- cmd: |
+  pip install numpy h5py wheel --quiet
+  python -W ignore setup.py bdist_wheel
 skip_tags: true
 artifacts:
 - path: dist\*
