@@ -1,0 +1,28 @@
+
+version: '{build}'
+image: Visual Studio 2015
+platform:
+- x64
+environment:
+  global:
+    MSSdk: 1
+  matrix:
+  - PYTHON: 36
+install:
+- cmd: '"%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%'
+- cmd: git config core.symlinks true
+- cmd: git reset --hard
+- ps: $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
+ 
+build_script:
+  - "pip install numpy h5py"
+  - "python setup.py build"
+- cmd: |
+    pip install numpy h5py wheel --quiet
+    python -W ignore setup.py bdist_wheel
+skip_tags: true
+artifacts:
+- path: dist\*
+  name: Wheel
+  type: WebDeployPackage
+ 
