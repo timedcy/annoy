@@ -1,23 +1,19 @@
 version: '{build}'
 # image: Visual Studio 2015
-platform:
-- x64
 environment:
-  global:
-    MSSdk: 1
   matrix:
-  - PYTHON: 36
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+
 install:
-#- cmd: '"%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%'
-#- cmd: git config core.symlinks true
-#- cmd: git reset --hard
-- ps: $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
-- ps: python.exe -m pip install --disable-pip-version-check --user --upgrade pip setuptools six
-- ps: pip install numpy h5py wheel
- 
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python.exe -m pip install --disable-pip-version-check --user --upgrade pip setuptools six
+
 build_script:
 - cmd: |
-    python -W ignore setup.py install
+    "pip install numpy h5py"
+    "python setup.py build" 
     python -W ignore setup.py bdist_wheel
 skip_tags: true
 artifacts:
