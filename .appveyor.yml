@@ -12,7 +12,7 @@ install:
 
 build_script:
 - cmd: |
-    pip install numpy h5py
+    pip install numpy h5py wheel
     python setup.py build
     python -W ignore setup.py bdist_wheel
 skip_tags: true
