@@ -14,8 +14,6 @@ install:
 - ps: $env:PATH = "C:\Python$env:PYTHON\;C:\Python$env:PYTHON\Scripts\;$env:PATH"
  
 build_script:
-  - "pip install numpy h5py"
-  - "python setup.py build"
   - cmd: |
     pip install numpy h5py wheel --quiet
     python -W ignore setup.py bdist_wheel
