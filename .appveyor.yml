@@ -12,8 +12,8 @@ install:
 
 build_script:
 - cmd: |
-    "pip install numpy h5py"
-    "python setup.py build" 
+    pip install numpy h5py
+    python setup.py build
     python -W ignore setup.py bdist_wheel
 skip_tags: true
 artifacts:
